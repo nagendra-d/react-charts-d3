@@ -96,7 +96,7 @@ class Bars extends PureComponent<Props> {
 
     /** Set up each bar. */
     barEnter
-      .attr('x', d => x(d.x) + d.series * x.bandwidth() / chartData.length)
+      .attr('x', d => x(d.x) + (d.series * x.bandwidth()) / chartData.length)
       .attr('y', height)
       .attr('width', x.bandwidth() / chartData.length)
       .attr('height', 0)

@@ -18,7 +18,7 @@
     "build": "webpack -p",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "prepublish": "npm run format && npm run test && npm run build && npm run styleguide:build",
+    "prepublish": "npm run format && npm run build && npm run styleguide:build",
     "styleguide:build": "styleguidist build",
     "flow": "flow",
     "format": "prettier --write \"src/**/*.js\""

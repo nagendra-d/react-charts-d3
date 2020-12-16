@@ -10,6 +10,7 @@ import NoData from '../NoData/NoData';
 
 import * as chart from '../../utils/chart';
 import * as scales from '../../utils/scales';
+import Legend from '../Legend/Legend';
 
 import type { PieData, Margin, ColorScale } from '../../utils/commonTypes';
 
@@ -30,6 +31,7 @@ type Props = {|
   colorSchemeCategory: any,
   /** If true displays chart as doughnut, if false displays chart as pie. */
   displayAsDoughnut: boolean,
+  doughnutInnerRadius: number,
   /** Show or hide pie segment labels. */
   displayLabels: boolean,
   /** Sets label offset distance from the pie chart. */
@@ -62,6 +64,7 @@ class PieChart extends PureComponent<Props, State> {
     colorScale: { from: '#008793', to: '#00bf72' },
     colorSchemeCategory: [],
     displayAsDoughnut: false,
+    doughnutInnerRadius: 50,
     displayLabels: true,
     labelOffset: 90,
     valueFormatter: format('.3n'),
@@ -156,6 +159,7 @@ class PieChart extends PureComponent<Props, State> {
       valueFormatter,
       noDataMessage,
       eventDispatcher,
+      doughnutInnerRadius,
     } = this.props;
 
     const { w, h, m } = chart.calculateChartValues(
@@ -194,9 +198,18 @@ class PieChart extends PureComponent<Props, State> {
                 height={h}
                 color={color}
                 displayAsDoughnut={displayAsDoughnut}
+                doughnutInnerRadius={doughnutInnerRadius}
                 displayLabels={displayLabels}
                 labelOffset={labelOffset}
                 valueFormatter={valueFormatter}
+                eventDispatcher={eventDispatcher}
+              />
+              <Legend
+                data={data}
+                width={width}
+                margin={{ top: h - 10, left: 40, bottom: 30, right: 10 }}
+                color={color}
+                showLegend={true}
                 eventDispatcher={eventDispatcher}
               />
             </g>

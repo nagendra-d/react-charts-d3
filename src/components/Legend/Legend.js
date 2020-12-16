@@ -68,7 +68,7 @@ class Legend extends PureComponent<Props> {
 
     const legend = selection
       .append('g')
-      .attr('transform', `translate(0, ${-margin.top})`)
+      .attr('transform', `translate(0, ${margin.top})`)
       .selectAll('.legend-item')
       .data(data);
 
@@ -86,22 +86,24 @@ class Legend extends PureComponent<Props> {
       .filter(d => d.disabled)
       .attr('width', 8)
       .attr('height', 8)
+      .attr('border-radius', 4)
       .attr('x', 1)
       .attr('y', 1)
       .style('stroke', d => color(d.index))
       .style('stroke-width', 2)
-      .style('fill', 'none');
+      .style('fill', 'rgba(0,0,0,0)');
 
     legendIcon
       .filter(d => !d.disabled)
       .attr('width', 10)
       .attr('height', 10)
+      .attr('border-radius', 5)
       .style('fill', d => color(d.index));
 
     legendEnter
       .append('text')
       .attr('class', 'legend-label')
-      .text(d => d.key)
+      .text(d => d.label)
       .attr('dx', 15)
       .attr('dy', 8);
 

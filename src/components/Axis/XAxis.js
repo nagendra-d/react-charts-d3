@@ -101,10 +101,12 @@ class XAxis extends PureComponent<Props> {
       .attr('y', 30)
       .text(label);
 
-    xAxis.filter(() => showLabel).call(() => {
-      const labelNode = xAxis.selectAll('.label');
-      this.positionAxisLabel(labelNode);
-    });
+    xAxis
+      .filter(() => showLabel)
+      .call(() => {
+        const labelNode = xAxis.selectAll('.label');
+        this.positionAxisLabel(labelNode);
+      });
 
     xAxis
       .filter(() => showGrid)

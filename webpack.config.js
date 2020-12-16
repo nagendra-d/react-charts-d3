@@ -7,33 +7,30 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'react-charts-d3.js',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: "babel-loader"
+        use: 'babel-loader',
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: "babel-loader"
-      }
-    ]
+        use: 'babel-loader',
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
-      'global': {}, // bizarre lodash(?) webpack workaround
-      'global.GENTLY': false // superagent client fix
+      global: {}, // bizarre lodash(?) webpack workaround
+      'global.GENTLY': true, // superagent client fix
     })
   ],
 };

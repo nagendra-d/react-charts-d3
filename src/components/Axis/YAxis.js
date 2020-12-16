@@ -112,10 +112,12 @@ class YAxis extends PureComponent<Props> {
       .attr('y', 0 - 30)
       .text(label);
 
-    yAxis.filter(() => showLabel).call(() => {
-      const labelNode = yAxis.selectAll('.label');
-      this.positionAxisLabel(labelNode);
-    });
+    yAxis
+      .filter(() => showLabel)
+      .call(() => {
+        const labelNode = yAxis.selectAll('.label');
+        this.positionAxisLabel(labelNode);
+      });
 
     yAxis
       .filter(() => showGrid)

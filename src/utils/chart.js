@@ -51,17 +51,19 @@ export function mapSeriesToData(chartData: Array<ChartData>): Array<ChartData> {
     return data;
   });
 
-  chartData.filter(d => !d.disabled).map((series, i) => {
-    const data = series;
+  chartData
+    .filter(d => !d.disabled)
+    .map((series, i) => {
+      const data = series;
 
-    data.values.map(dataPoint => {
-      const values = dataPoint;
-      values.series = i;
-      return values;
+      data.values.map(dataPoint => {
+        const values = dataPoint;
+        values.series = i;
+        return values;
+      });
+
+      return data;
     });
-
-    return data;
-  });
 
   return chartData;
 }

@@ -22,6 +22,7 @@ type Props = {|
   color: Function,
   /** If true displays chart as doughnut, if false displays chart as pie. */
   displayAsDoughnut: boolean,
+  doughnutInnerRadius: number,
   /** Show or hide pie segment labels. */
   displayLabels: boolean,
   /** Sets label offset distance from the pie chart. */
@@ -40,6 +41,7 @@ class Pie extends PureComponent<Props> {
     width: 600,
     height: 200,
     displayAsDoughnut: true,
+    doughnutInnerRadius: 50,
     displayLabels: true,
     labelOffset: 100,
     valueFormatter: format('.3n'),
@@ -60,6 +62,7 @@ class Pie extends PureComponent<Props> {
       displayLabels,
       labelOffset,
       valueFormatter,
+      doughnutInnerRadius,
       eventDispatcher,
     } = this.props;
 
@@ -75,14 +78,15 @@ class Pie extends PureComponent<Props> {
       .value(d => d.value);
 
     /** Setup arc scale. */
+    console.log(doughnutInnerRadius);
     const path = arcScale()
-      .innerRadius(displayAsDoughnut ? radiusScale - 50 : 0)
+      .innerRadius(displayAsDoughnut ? radiusScale - doughnutInnerRadius : 0)
       .outerRadius(radiusScale - 10);
 
     const node = this.pie;
     const selection = select(node);
 
-    selection.attr('transform', `translate(${width / 2}, ${height / 2})`);
+    selection.attr('transform', `translate(${width / 2}, ${height / 2 - 10})`);
     selection.selectAll('*').remove();
 
     /** Set up arcs. */
